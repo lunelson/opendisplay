@@ -321,7 +321,7 @@ final class ReceiverController: ObservableObject {
     }
 
     /// Notch-area mode: a borderless window over the whole primary screen,
-    /// above the menu bar, with menu bar and Dock hidden. Native fullscreen
+    /// with menu bar and Dock hidden while this app is frontmost. Native fullscreen
     /// stops below the notch strip; this does not. Esc closes the window
     /// (the stream keeps running; Show Window brings it back).
     private func showEdgeToEdgeWindow(receiver: StreamReceiver) {
@@ -333,8 +333,9 @@ final class ReceiverController: ObservableObject {
             w.contentView = ReceiverVideoView(receiver: receiver)
             w.isReleasedWhenClosed = false
             w.backgroundColor = .black
-            w.level = .statusBar
-            w.collectionBehavior = [.canJoinAllSpaces, .fullScreenAuxiliary, .stationary]
+            // Normal level, like Ghostty's non-native fullscreen: the hidden
+            // menu bar and Dock apply only while this app is frontmost, so
+            // switching apps brings both back and puts other windows in front.
             window = w
             windowObservers = [
                 NotificationCenter.default.addObserver(

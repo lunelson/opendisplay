@@ -29,7 +29,7 @@ struct ReceiverSections: View {
                 get: { useNotchArea },
                 set: { controller.setUseNotchArea($0) }))
         } footer: {
-            Text("Extends the display into the menu-bar strip beside the notch. The video opens edge to edge above the menu bar; press Esc to close it.")
+            Text("Extends the display into the menu-bar strip beside the notch. The video opens edge to edge over the whole screen; switch apps to bring others in front, or press Esc to close it.")
         }
 
         Section {
